@@ -19,7 +19,7 @@ import static org.wso2.carbon.social.Constants.*;
 public class ActivityBrowser {
 
     private static final Log LOG = LogFactory.getLog(ActivityBrowser.class);
-    public static String SELECT_CQL = "SELECT * FROM " + STREAM_NAME_IN_CASSANDRA + " WHERE '" + CONTEXT_ID_COLUMN + "'=?";
+    //public static final String SELECT_CQL = "SELECT * FROM " + STREAM_NAME_IN_CASSANDRA + " WHERE '" + CONTEXT_ID_COLUMN + "'=?";
 
     private JsonParser parser = new JsonParser();
     private Connection conn;
@@ -61,10 +61,10 @@ public class ActivityBrowser {
         List<Activity> activities = null;
         Connection connection = getConnection();
         if (connection != null) {
+        	String SELECT_CQL = "SELECT * FROM " + STREAM_NAME_IN_CASSANDRA + " WHERE '" + CONTEXT_ID_COLUMN + "'=?";
             PreparedStatement statement = null;
             ResultSet resultSet = null;
             try {
-            	LOG.error(SELECT_CQL);
             	//update SELECT_CQL according to parameters
 	        		if(sinceId != "0"){
 	        			SELECT_CQL+= " AND '"+ ID_COLUMN +"'>?";
