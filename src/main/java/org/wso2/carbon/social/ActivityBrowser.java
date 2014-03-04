@@ -66,7 +66,7 @@ public class ActivityBrowser {
             ResultSet resultSet = null;
             try {
             	//update SELECT_CQL according to parameters
-	        		if(sinceId != "0"){
+	        		if(!sinceId.equals("0")){
 	        			SELECT_CQL+= " AND '"+ ID_COLUMN +"'>?";
 	        		}
             		if(true){
@@ -76,7 +76,7 @@ public class ActivityBrowser {
             	
                 statement = connection.prepareStatement(SELECT_CQL);
                 statement.setString(1, contextId);
-	                if(sinceId != "0"){
+	                if(!sinceId.equals("0")){
 	                statement.setString(2, sinceId);
 	                }
                 resultSet = statement.executeQuery();
